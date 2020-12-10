@@ -1,4 +1,10 @@
-import { ADD_TODO, TOGGLE_TODO, DELETE_TODO, CLEAR_TODO } from "../actionTypes";
+import {
+  GET_TODOS_FROM_LOCALSTORAGE,
+  ADD_TODO,
+  TOGGLE_TODO,
+  DELETE_TODO,
+  CLEAR_TODO,
+} from "../actionTypes";
 
 let todoId = 0;
 
@@ -8,6 +14,11 @@ const initialState = {
 
 export default function todosReducer(state = initialState, action) {
   switch (action.type) {
+    case GET_TODOS_FROM_LOCALSTORAGE: {
+      return {
+        todos: action.payload.todos,
+      };
+    }
     case ADD_TODO: {
       return {
         ...state,

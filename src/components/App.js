@@ -3,7 +3,12 @@ import TodoItem from "./TodoItem";
 import styled from "styled-components";
 import { useSelector, useDispatch } from "react-redux";
 import { selectTodos, selectFilter } from "../redux/selectors";
-import { addTodo, clearTodo, setFilter } from "../redux/actions";
+import {
+  addTodo,
+  clearTodo,
+  setFilter,
+  getTodosFromLocalStorage,
+} from "../redux/actions";
 
 const Container = styled.div`
   background-color: lightpink;
@@ -82,6 +87,18 @@ export default function App() {
   const filter = useSelector(selectFilter);
   const dispatch = useDispatch();
   const [value, setValue] = useState("");
+
+  useEffect(() => {
+    const todos = JSON.parse(localStorage.getItem("todos"));
+
+    if (todos) {
+      dispatch(getTodosFromLocalStorage(todos));
+    }
+  }, []);
+
+  useEffect(() => {
+    localStorage.setItem("todos", JSON.stringify(todos));
+  }, [todos]);
 
   const handleInputChange = (e) => {
     setValue(e.target.value);
