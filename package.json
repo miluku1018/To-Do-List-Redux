@@ -23,7 +23,7 @@
     "predeploy": "npm run build",
     "deploy": "gh-pages -d build"
   },
-  "homepage": "https://miluku1018.github.io/To-Do-List",
+  "homepage": "https://miluku1018.github.io/To-Do-List-Redux",
   "eslintConfig": {
     "extends": [
       "react-app",
