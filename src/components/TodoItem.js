@@ -1,11 +1,14 @@
 import styled from "styled-components";
+import { useDispatch } from "react-redux";
+import { deleteTodo, toggleTodo } from "../redux/actions";
 
 const TodoItemWrapper = styled.div`
   width: 600px;
   margin: 0 auto;
   margin-top: 20px;
   border-radius: 3px;
-  border: 1px solid rgba(54, 84, 7, 0.5);
+  background: #ffffff63;
+  padding: 5px;
   display: flex;
   justify-content: space-between;
   align-items: center;
@@ -40,22 +43,19 @@ const RedButton = styled.button`
   cursor: pointer;
 `;
 
-export default function TodoItem({ todo, handleToggleTodo, handleDeleteTodo }) {
-  const handleToggleClick = () => {
-    handleToggleTodo(todo.id);
-  };
-  const handleDeleteClick = () => {
-    handleDeleteTodo(todo.id);
-  };
+export default function TodoItem({ todo }) {
+  const dispatch = useDispatch();
 
   return (
-    <TodoItemWrapper data-todo-id={todo.id}>
-      <TodoContent>{todo.content}</TodoContent>
+    <TodoItemWrapper>
+      <TodoContent completed={todo.completed}>{todo.name}</TodoContent>
       <TodoButtonWrapper>
-        <BlueButton onClick={handleToggleClick}>
-          {todo.isDone ? "未完成" : "已完成"}
+        <BlueButton onClick={() => dispatch(toggleTodo(todo.id))}>
+          {todo.completed ? "未完成" : "已完成"}
         </BlueButton>
-        <RedButton onClick={handleDeleteClick}>刪除</RedButton>
+        <RedButton onClick={() => dispatch(deleteTodo(todo.id))}>
+          刪除
+        </RedButton>
       </TodoButtonWrapper>
     </TodoItemWrapper>
   );
