@@ -52,7 +52,7 @@ const Buttons = styled.div`
   margin-top: 20px;
 `;
 const Button = styled.button`
-  width: 80px;
+  width: 100px;
   height: 30px;
   cursor: pointer;
   background: #ffffff;
@@ -69,7 +69,7 @@ const Button = styled.button`
 `;
 
 const ClearButton = styled.button`
-  width: 80px;
+  width: 100px;
   height: 30px;
   cursor: pointer;
   background: #ffffff;
